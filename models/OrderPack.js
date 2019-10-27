@@ -7,6 +7,10 @@ const OrderPackSchema = mongoose.Schema({
     type: Date,
     require: true
   },
+  name: {
+    type: String,
+    require: true
+  },
   createAt: {
     type: Date,
     default: Date.now

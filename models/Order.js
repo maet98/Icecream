@@ -6,7 +6,7 @@ const OrderSchema = mongoose.Schema({
     require: true
   },
   price: {
-    type: double,
+    type: Number,
     require: true
   },
   PaymentMethod: {
@@ -17,15 +17,7 @@ const OrderSchema = mongoose.Schema({
   payed: {
     type: Boolean,
     require: true
-  },
-  list: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "OrderPack"
-  },
-  person: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
   }
 });
 
-module.exports = mongoose.model("OrderPack", OrderPackSchema);
+module.exports = mongoose.model("OrderPack", OrderSchemabody);

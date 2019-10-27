@@ -17,7 +17,9 @@ const UserSchema = mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  updateAt: Date
+  updateAt: Date,
+  orders: [],
+  orderPacks: []
 });
 
 module.exports = mongoose.model("User", UserSchema);

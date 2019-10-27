@@ -1,15 +1,15 @@
 const express = require("express");
 const router = express.Router();
+const User = require("../models/User");
 const {
-  allUser,
-  findUser,
-  updateUser,
-  deleteUser,
-  addUser,
-  getOrder
-} = require("../controllers/userController");
+  allOrder,
+  findOrder,
+  updateOrder,
+  deleteOrder,
+  updateOrder
+} = require("../controllers/orderController");
 
-router.get("/", allUser);
+router.get("/", allOrder);
 
 router.post("/addUser", addUser);
 
@@ -22,7 +22,7 @@ router.delete("/:userId", deleteUser);
 //Update a User
 router.patch("/:userId", updateUser);
 
-//getallOrder of a user
+//getallOrder
 router.get("/order/:userId", getOrder);
 
 module.exports = router;
