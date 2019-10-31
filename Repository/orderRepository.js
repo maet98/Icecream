@@ -5,14 +5,27 @@ const {getUser} = require("./userRepository");
 const {getOrderPack} = require("./orderPackRepository");
 
 module.exports = {
+  /**
+   * @author Miguel Estevez
+   * @description elige todas las ordenes que estan la base de datos.
+   * @returns arreglo de ordenes.
+   */
   allOrder: async (req, res) => {
     try {
-      const all = await Order.find();
+      const all = await Order.find().populate('orderBy','name').populate('orderPack','name');
       res.status(200).json(all);
     } catch (err) {
       res.status(400).json({ message: err });
     }
   },
+  /**
+   * @author Miguel Estevez
+   * @description Ingresa una orden en la base de datos
+   * @constraint Un usuario no puede ingresar dos ordenes en la misma lista
+   * @param UserId Id del usuario que esta haciendo la orden
+   * @param orderPackId id de la lista de ordenes en donde se va a ingresar
+   * @returns La orden creada si no hubo problema sino devolvera un mensaje con dicho problema.
+   */
   addOrder: async (req, res) => {
     try {
       const orders = await Order.find({orderPack:req.body.orderPack,orderBy:req.body.orderBy});
@@ -43,7 +56,10 @@ module.exports = {
       res.status(400).json({ message: err });
     }
   },
-  //Delete Specific Order
+  /**
+   * @author Miguel Estevez
+   * 
+   */
   deleteOrder: async (req, res) => {
     try {
       const removedOrder = await Order.findById(req.params.orderId);
@@ -59,6 +75,12 @@ module.exports = {
       res.status(400).json({ message: err });
     }
   },
+  /**
+   * @author Miguel Estevez
+   * @param OrderId id de la order a modificar
+   * @param body json donde estaran os atributos que se cambiaran
+   * @returns La order ya modificada o si hubo un problema un mensaje
+   */
   //Update an Order
   updateOrder: async (req, res) => {
     try {
@@ -71,7 +93,7 @@ module.exports = {
         const order = await Order.findById(req.params.orderId);
         const orderPack = await OrderPack.findById(order.orderPack);
         if(user._id === order.orderBy){
-          if(Date.now() <= orderPack.expirationDate){
+          if(Date.now < orderPack.expirationDate){
             const updatedOrder = await order.update({
                 description: req.body.description,
                 price: req.body.price,
@@ -85,7 +107,8 @@ module.exports = {
             res.status(400).json({message:"The expiration date have already passed."})
           }
         }
-        else{
+        else
+        {
           res.status(400).json({message:"Can't modify the order from other user."});
         }
       })
