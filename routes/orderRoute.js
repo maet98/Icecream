@@ -1,28 +1,27 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/User");
 const {
   allOrder,
+  deleteOrder,
   findOrder,
   updateOrder,
-  deleteOrder,
-  updateOrder
-} = require("../controllers/orderController");
+  addOrder
+} = require("../Repository/orderRepository");
 
+//All the order in the DB
 router.get("/", allOrder);
 
-router.post("/addUser", addUser);
+//Add a new Order
+router.post("/", addOrder);
 
-//Specific User
-router.get("/:UserId", findUser);
+//Specific Order
+router.get("/:orderId", findOrder);
 
 //Delete Specific User
-router.delete("/:userId", deleteUser);
+router.delete("/:orderId/:userId", deleteOrder);
 
-//Update a User
-router.patch("/:userId", updateUser);
+//Update a Order
+router.patch("/:orderId", updateOrder);
 
-//getallOrder
-router.get("/order/:userId", getOrder);
 
 module.exports = router;

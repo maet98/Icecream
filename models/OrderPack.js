@@ -1,8 +1,12 @@
 const mongoose = require("mongoose");
+const User = require("./User");
 
 const OrderPackSchema = mongoose.Schema({
-  createBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  orders: [],
+  createdBy:{
+    type: mongoose.Schema.Types.ObjectId, 
+    ref:'User',
+    require: true
+  },
   expirationDate: {
     type: Date,
     require: true

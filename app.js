@@ -9,9 +9,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //Import Routes
 const userRoute = require("./routes/userRoute");
+const orderPackRoute = require("./routes/OrderPackRoute");
+const orderRoute = require("./routes/orderRoute");
 
 //Use Routes
-app.use("/users", userRoute);
+app.use("/user", userRoute);
+app.use("/orderPack",orderPackRoute);
+app.use("/order",orderRoute);
 
 app.get("/", (req, res) => {
   res.send("We are on home");

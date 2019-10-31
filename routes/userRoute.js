@@ -6,12 +6,17 @@ const {
   updateUser,
   deleteUser,
   addUser,
+  aunthentication,
+  findUserEmail,
   getOrder
-} = require("../controllers/userController");
+} = require("../Repository/userRepository");
 
 router.get("/", allUser);
 
-router.post("/addUser", addUser);
+router.post("/", addUser);
+
+//Login
+router.post("/authentication",aunthentication);
 
 //Specific User
 router.get("/:UserId", findUser);

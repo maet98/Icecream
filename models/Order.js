@@ -17,7 +17,15 @@ const OrderSchema = mongoose.Schema({
   payed: {
     type: Boolean,
     require: true
+  },
+  orderBy:{
+    type: mongoose.Schema.Types.ObjectId,
+    require: true
+  },
+  orderPack:{
+    type:mongoose.Schema.Types.ObjectId,
+    require:true
   }
 });
 
-module.exports = mongoose.model("OrderPack", OrderSchemabody);
+module.exports = mongoose.model("order", OrderSchema);
