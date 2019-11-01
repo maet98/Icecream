@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const User = require("./User");
 
-/**Representa una lista de ordenes
+/**
+ * @description Representa una lista de ordenes
  * @author Miguel Estevez
  * @argument createdBy Persona quien creo la lista
  * @argument expirationDate Fecha en que se termina la orden
@@ -25,15 +26,21 @@ const OrderPackSchema = mongoose.Schema({
   },
   createAt: {
     type: Date,
-    default: Date.now
+    default: new Date()
   },
   updateAt: {
-    type: Date
+    type: Date,
+    default: new Date()
   },
   inCharge:{
     type: mongoose.Schema.Types.ObjectId,
-    ref:'User'
-  }
+    ref:'User',
+    require: true
+  },
+  sended:{
+    type: Boolean,
+    default: false
+  } 
 });
 
 module.exports = mongoose.model("OrderPack", OrderPackSchema);

@@ -11,23 +11,25 @@ const {
   getOrder
 } = require("../Repository/userRepository");
 
+//Todos los usuarios registrados
 router.get("/", allUser);
 
+//Agregar un usuario nuevo
 router.post("/", addUser);
 
-//Login
+//Auntenficacion de un usuario
 router.post("/authentication",aunthentication);
 
-//Specific User
+//Buscar un usuario especifico en la base de datos
 router.get("/:UserId", findUser);
 
-//Delete Specific User
+//Borrar un usuario especifico
 router.delete("/:userId", deleteUser);
 
-//Update a User
+//Modificar una usuario
 router.patch("/:userId", updateUser);
 
-//getallOrder of a user
+//Devuelve todas las ordenes de un usuario
 router.get("/order/:userId", getOrder);
 
 module.exports = router;

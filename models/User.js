@@ -1,5 +1,13 @@
 const mongoose = require("mongoose");
-
+/**
+ * @author Miguel Estevez
+ * @description Representacion de un usuario
+ * @param name nombre del usuario
+ * @param email email del usuario
+ * @param password contraseña de la cuenta
+ * @param createAt fecha de creacion
+ * @param updateAt Ultima fecha de modificacion
+ */
 const UserSchema = mongoose.Schema({
   name: {
     type: String,
@@ -15,7 +23,7 @@ const UserSchema = mongoose.Schema({
   },
   createAt: {
     type: Date,
-    default: Date.now
+    default: new Date()
   },
   updateAt: Date,
 });

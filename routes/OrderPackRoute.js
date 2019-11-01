@@ -9,23 +9,26 @@ const {
     updateOrderPack
 } = require("../Repository/orderPackRepository");
 
+// Ruta para devolver todos las lista de ordenes
 router.get("/", allOrderPacks);
 
+//Rubta para crear una lista de ordenes.
 router.post("/", addOrderPack);
 
-//Get all Orders from a OrderPack
+//Ruta para devolver todas las orders de una lista especifica
 router.get("/orders/:OrderPackId",getOrders);
 
-//Specific OrderPack
+//Ruta para obtener una lista por su id
 router.get("/:OrderPackId", findOrderPack);
 
-//Delete Specific OrderPack
+//Ruta para borrar una lista
 router.delete("/:orderPackId", deleteOrderPack);
 
-//Update a OrderPack
+//Ruta para modificar una lista
 router.patch("/:orderPackId/:userId", updateOrderPack);
 
-//getallOrder of a user
+//Ruta para coger todas las ordenes de una lista
 router.get("/order/:orderPackId", getOrders);
+
 
 module.exports = router;

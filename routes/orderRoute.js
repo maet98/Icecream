@@ -8,19 +8,19 @@ const {
   addOrder
 } = require("../Repository/orderRepository");
 
-//All the order in the DB
+//Todas las ordenes registradas
 router.get("/", allOrder);
 
-//Add a new Order
+//Agregar una orden
 router.post("/", addOrder);
 
-//Specific Order
+//Buscar una orden especifica
 router.get("/:orderId", findOrder);
 
-//Delete Specific User
+//Borrar una orden
 router.delete("/:orderId/:userId", deleteOrder);
 
-//Update a Order
+//Modificar una orden
 router.patch("/:orderId", updateOrder);
 
 
